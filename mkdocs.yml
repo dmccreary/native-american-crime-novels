@@ -10,8 +10,9 @@ edit_uri: edit/main/docs/
 nav:
   - Home: index.md
   - About: about.md
-  - Sims:
+  - MicroSims:
     - Introduction: sims/index.md
+    - Book Sales: sims/book-sales/index.md
     - Concept Graph: sims/concept-graph/index.md
     - Timeline: sims/timeline/index.md
  
@@ -20,7 +21,6 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.sections
     - navigation.expand
     - toc.integrate
     - content.code.copy

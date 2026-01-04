@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Hillerman Book Sales</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tony Hillerman Book Sales</h1>
+            <p class="subtitle">Estimated Total Sales by Novel (in millions)</p>
+        </header>
+
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+
+        <footer>
+            <p>Total series sales: <strong>30+ million copies worldwide</strong></p>
+        </footer>
+    </div>
+
+    <script>
+        // Fetch data and create chart
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                createChart(data);
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.querySelector('.chart-container').innerHTML =
+                    '<p style="color: #e74c3c; text-align: center; padding: 40px;">Error loading chart data.</p>';
+            });
+
+        function createChart(data) {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+
+            // Sort books by sales (highest first)
+            const sortedBooks = [...data.books].sort((a, b) => b.sales - a.sales);
+
+            const labels = sortedBooks.map(book => book.title);
+            const salesData = sortedBooks.map(book => book.sales);
+            const notes = sortedBooks.map(book => book.note);
+
+            // Color gradient based on sales
+            const colors = sortedBooks.map((book, index) => {
+                const ratio = index / (sortedBooks.length - 1);
+                // Gradient from gold to teal
+                const r = Math.round(255 - (ratio * 100));
+                const g = Math.round(180 + (ratio * 30));
+                const b = Math.round(100 + (ratio * 100));
+                return `rgba(${r}, ${g}, ${b}, 0.85)`;
+            });
+
+            const borderColors = colors.map(c => c.replace('0.85', '1'));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Sales (millions)',
+                        data: salesData,
+                        backgroundColor: colors,
+                        borderColor: borderColors,
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(22, 33, 62, 0.95)',
+                            titleColor: '#ffd166',
+                            bodyColor: '#e6edf6',
+                            borderColor: '#ffd166',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    const index = context.dataIndex;
+                                    return [
+                                        `Sales: ${context.parsed.x.toFixed(1)} million copies`,
+                                        ``,
+                                        notes[index]
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 3.5,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#9fb0c3',
+                                callback: function(value) {
+                                    return value + 'M';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Copies Sold (Millions)',
+                                color: '#9fb0c3',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#e6edf6',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
