@@ -1,0 +1,9 @@
+site_name: My Docs
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Sims:
+      - Introduction: sims/index.md
+      - Concept Graph: sims/concept-graph/index.md
+ 
