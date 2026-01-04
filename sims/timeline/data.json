@@ -1,0 +1,248 @@
+{
+  "title": "Tony Hillerman Timeline",
+  "events": [
+    {
+      "start_date": { "year": "1925", "month": "5", "day": "27" },
+      "text": {
+        "headline": "Tony Hillerman Born",
+        "text": "Anthony Grove Hillerman born in Sacred Heart, Oklahoma to August and Lucy Hillerman, a farming family of German heritage."
+      },
+      "group": "Life",
+      "notes": "Grew up in rural Oklahoma among Potawatomi people, which sparked his lifelong interest in Native American cultures."
+    },
+    {
+      "start_date": { "year": "1943" },
+      "text": {
+        "headline": "Enlists in U.S. Army",
+        "text": "Hillerman enlists in the U.S. Army during World War II, serving with the 103rd Infantry Division."
+      },
+      "group": "Life",
+      "notes": "His wartime experiences, including being wounded in France, profoundly influenced his later writing."
+    },
+    {
+      "start_date": { "year": "1948" },
+      "text": {
+        "headline": "Graduates University of Oklahoma",
+        "text": "Earns a degree in journalism from the University of Oklahoma, beginning his career as a reporter."
+      },
+      "group": "Life",
+      "notes": "His journalism background shaped his meticulous attention to detail in his novels."
+    },
+    {
+      "start_date": { "year": "1963" },
+      "text": {
+        "headline": "Moves to New Mexico",
+        "text": "Hillerman moves to New Mexico to work at the Santa Fe New Mexican newspaper, deepening his connection to the Southwest."
+      },
+      "group": "Life",
+      "notes": "This move immersed him in Navajo and Pueblo cultures that would become central to his fiction."
+    },
+    {
+      "start_date": { "year": "1970" },
+      "text": {
+        "headline": "The Blessing Way",
+        "text": "First novel published, introducing Lieutenant Joe Leaphorn of the Navajo Tribal Police investigating a murder connected to witchcraft fears."
+      },
+      "group": "Novel",
+      "notes": "Initially rejected by publishers who thought readers wouldn't be interested in Native American characters."
+    },
+    {
+      "start_date": { "year": "1973" },
+      "text": {
+        "headline": "Dance Hall of the Dead",
+        "text": "Second Leaphorn novel explores the disappearance of a Zuni boy and the clash between Navajo and Zuni cultures."
+      },
+      "group": "Novel",
+      "notes": "This novel won the Edgar Award for Best Novel, establishing Hillerman as a major mystery writer."
+    },
+    {
+      "start_date": { "year": "1974" },
+      "text": {
+        "headline": "Edgar Award - Best Novel",
+        "text": "Hillerman wins the prestigious Edgar Award from Mystery Writers of America for Dance Hall of the Dead."
+      },
+      "group": "Award",
+      "notes": "The Edgar Award is considered the most prestigious award in mystery writing, named after Edgar Allan Poe."
+    },
+    {
+      "start_date": { "year": "1978" },
+      "text": {
+        "headline": "Listening Woman",
+        "text": "Third Leaphorn novel features a blind medicine woman as a witness to events surrounding a murder and hidden treasure."
+      },
+      "group": "Novel",
+      "notes": "Deepens exploration of traditional Navajo spiritual practices and healing ceremonies."
+    },
+    {
+      "start_date": { "year": "1980" },
+      "text": {
+        "headline": "People of Darkness",
+        "text": "Introduces Officer Jim Chee, a young Navajo Tribal Police officer training to become a medicine man. Explores uranium mining and corporate crime."
+      },
+      "group": "Novel",
+      "notes": "Chee represents the younger generation navigating between traditional ways and modern life."
+    },
+    {
+      "start_date": { "year": "1982" },
+      "text": {
+        "headline": "The Dark Wind",
+        "text": "Jim Chee investigates drug smuggling on the Hopi-Navajo border, featuring a windmill and violated burial site."
+      },
+      "group": "Novel",
+      "notes": "Explores the complex relationship between Hopi and Navajo peoples sharing disputed land."
+    },
+    {
+      "start_date": { "year": "1984" },
+      "text": {
+        "headline": "The Ghostway",
+        "text": "Chee tracks a witness from the reservation to Los Angeles, contrasting urban and reservation life while exploring ghost sickness."
+      },
+      "group": "Novel",
+      "notes": "One of the few novels that takes the action off the reservation, highlighting cultural displacement."
+    },
+    {
+      "start_date": { "year": "1986" },
+      "text": {
+        "headline": "Skinwalkers",
+        "text": "First novel featuring both Leaphorn and Chee working together. Witchcraft accusations mask deeper crimes in the community."
+      },
+      "group": "Novel",
+      "notes": "The pairing of the skeptical Leaphorn with the traditional Chee became the series' signature dynamic."
+    },
+    {
+      "start_date": { "year": "1987" },
+      "text": {
+        "headline": "Special Friend of the Dineh Award",
+        "text": "The Navajo Tribal Council honors Hillerman with the Special Friend of the Dineh (Navajo people) Award."
+      },
+      "group": "Award",
+      "notes": "A remarkable honor for a non-Native writer, recognizing his respectful portrayal of Navajo culture."
+    },
+    {
+      "start_date": { "year": "1988" },
+      "text": {
+        "headline": "A Thief of Time",
+        "text": "A missing archaeologist leads Leaphorn and Chee into the world of Anasazi ruins, pot hunting, and obsession with the past."
+      },
+      "group": "Novel",
+      "notes": "Addresses the controversial issue of archaeological looting on Native lands."
+    },
+    {
+      "start_date": { "year": "1989" },
+      "text": {
+        "headline": "Talking God",
+        "text": "A Smithsonian repatriation dispute brings Leaphorn and Chee to Washington D.C. involving masks, museum politics, and an assassination plot."
+      },
+      "group": "Novel",
+      "notes": "Written before NAGPRA (1990), this novel presciently addressed Native artifact repatriation issues."
+    },
+    {
+      "start_date": { "year": "1990" },
+      "text": {
+        "headline": "Coyote Waits",
+        "text": "An officer is killed and an elderly shaman is the prime suspect. The investigation uncovers connections to Butch Cassidy legends and historical truth."
+      },
+      "group": "Novel",
+      "notes": "Explores how stories and myths shape our understanding of history and justice."
+    },
+    {
+      "start_date": { "year": "1991" },
+      "text": {
+        "headline": "Grand Master Award",
+        "text": "Mystery Writers of America names Hillerman a Grand Master, the organization's highest honor for lifetime achievement."
+      },
+      "group": "Award",
+      "notes": "Only a handful of mystery writers have received this honor, including Agatha Christie and Raymond Chandler."
+    },
+    {
+      "start_date": { "year": "1993" },
+      "text": {
+        "headline": "Sacred Clowns",
+        "text": "A Koshare ceremonial clown is murdered at a pueblo, leading to investigations involving gambling, school politics, and pueblo secrets."
+      },
+      "group": "Novel",
+      "notes": "Features Bernie Manuelito in an early appearance before her expanded role in later books."
+    },
+    {
+      "start_date": { "year": "1996" },
+      "text": {
+        "headline": "The Fallen Man",
+        "text": "A skeleton discovered on Ship Rock opens a decade-old disappearance case involving land rights and climbing taboos."
+      },
+      "group": "Novel",
+      "notes": "Ship Rock (Tsé Bitʼaʼí) is sacred to the Navajo; climbing it violates traditional beliefs."
+    },
+    {
+      "start_date": { "year": "1998" },
+      "text": {
+        "headline": "The First Eagle",
+        "text": "A murdered biologist researching plague on the reservation leads to conflicts between Hopi prophecy and Western science."
+      },
+      "group": "Novel",
+      "notes": "Addresses real public health issues on the reservation while respecting traditional beliefs."
+    },
+    {
+      "start_date": { "year": "1999" },
+      "text": {
+        "headline": "Hunting Badger",
+        "text": "A casino heist with militia connections leads to a manhunt through the canyon country of the Four Corners region."
+      },
+      "group": "Novel",
+      "notes": "Inspired by actual events and the rugged terrain that makes law enforcement challenging."
+    },
+    {
+      "start_date": { "year": "2001" },
+      "text": {
+        "headline": "Center of the American West Award",
+        "text": "University of Colorado honors Hillerman with the Wallace Stegner Award for his contributions to Western American literature."
+      },
+      "group": "Award",
+      "notes": "Named after the great Western author Wallace Stegner, recognizing Hillerman's literary significance."
+    },
+    {
+      "start_date": { "year": "2002" },
+      "text": {
+        "headline": "The Wailing Wind",
+        "text": "Leaphorn returns from retirement to investigate a cold case involving a legendary lost gold mine and a murdered con man."
+      },
+      "group": "Novel",
+      "notes": "Features Leaphorn's continued involvement despite his official retirement."
+    },
+    {
+      "start_date": { "year": "2003" },
+      "text": {
+        "headline": "The Sinister Pig",
+        "text": "A body found near a pipeline leads to a complex investigation involving border politics, energy development, and federal agencies."
+      },
+      "group": "Novel",
+      "notes": "Addresses contemporary issues of border security and energy development on Native lands."
+    },
+    {
+      "start_date": { "year": "2004" },
+      "text": {
+        "headline": "Skeleton Man",
+        "text": "A decades-old plane crash over the Grand Canyon resurfaces, connecting to diamond smuggling and ancestral remains."
+      },
+      "group": "Novel",
+      "notes": "Based on the real 1956 Grand Canyon mid-air collision, the worst aviation disaster of its time."
+    },
+    {
+      "start_date": { "year": "2006" },
+      "text": {
+        "headline": "The Shape Shifter",
+        "text": "Hillerman's final novel brings closure as Leaphorn pursues a cold case involving a legendary Navajo rug, arson, and revenge."
+      },
+      "group": "Novel",
+      "notes": "Published two years before Hillerman's death, it serves as a fitting conclusion to the series."
+    },
+    {
+      "start_date": { "year": "2008", "month": "10", "day": "26" },
+      "text": {
+        "headline": "Tony Hillerman Dies",
+        "text": "Tony Hillerman dies in Albuquerque, New Mexico at age 83, leaving a legacy of 18 Leaphorn and Chee novels."
+      },
+      "group": "Life",
+      "notes": "His daughter Anne Hillerman continues the series, honoring his legacy with new novels."
+    }
+  ]
+}

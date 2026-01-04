@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony Hillerman Timeline</title>
+    <script src="https://unpkg.com/vis-timeline@7.7.3/standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link href="https://unpkg.com/vis-timeline@7.7.3/styles/vis-timeline-graph2d.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Tony Hillerman Timeline</h1>
+        <p>Life events, novels, and awards (1925-2008)</p>
+    </header>
+
+    <div class="controls">
+        <button class="filter-btn all" onclick="filterCategory('all')">All Events</button>
+        <button class="filter-btn life" onclick="filterCategory('Life')">Life Events</button>
+        <button class="filter-btn novel" onclick="filterCategory('Novel')">Novels</button>
+        <button class="filter-btn award" onclick="filterCategory('Award')">Awards</button>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="panLeft()">&#9664; Earlier</button>
+        <button class="nav-btn" onclick="zoomIn()">+ Zoom In</button>
+        <button class="nav-btn" onclick="zoomOut()">- Zoom Out</button>
+        <button class="nav-btn" onclick="fitAll()">Fit All</button>
+        <button class="nav-btn" onclick="panRight()">Later &#9654;</button>
+    </div>
+
+    <div id="timeline"></div>
+
+    <p class="instructions">Click an event to see details below. Use buttons to navigate or drag to pan.</p>
+
+    <div class="info-panel">
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item">
+                <div class="legend-color life"></div>
+                <span>Life Events</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color novel"></div>
+                <span>Novels</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color award"></div>
+                <span>Awards</span>
+            </div>
+        </div>
+
+        <div class="details">
+            <h3>Event Details</h3>
+            <div id="event-details">Click an event on the timeline to see details here.</div>
+        </div>
+    </div>
+
+    <script>
+        const categoryColors = {
+            'Life': '#e74c3c',
+            'Novel': '#27ae60',
+            'Award': '#f39c12'
+        };
+
+        let timeline;
+        let timelineData;
+        let allItems = [];
+
+        // Load data and initialize timeline
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Convert JSON data to vis-timeline format
+                allItems = data.events.map((event, index) => {
+                    const year = parseInt(event.start_date.year);
+                    const month = event.start_date.month ? parseInt(event.start_date.month) - 1 : 0;
+                    const day = event.start_date.day ? parseInt(event.start_date.day) : 1;
+
+                    return {
+                        id: index,
+                        content: event.text.headline,
+                        start: new Date(year, month, day),
+                        title: event.notes || event.text.text,
+                        category: event.group,
+                        description: event.text.text,
+                        context: event.notes,
+                        style: `background-color: ${categoryColors[event.group]}; color: white; border-color: ${categoryColors[event.group]};`
+                    };
+                });
+
+                // Create DataSet
+                timelineData = new vis.DataSet(allItems);
+
+                // Timeline options
+                const options = {
+                    width: '100%',
+                    height: '400px',
+                    margin: {
+                        item: { horizontal: 50, vertical: 10 },
+                        axis: 40
+                    },
+                    orientation: 'top',
+                    zoomMin: 1000 * 60 * 60 * 24 * 365 * 5,     // 5 years
+                    zoomMax: 1000 * 60 * 60 * 24 * 365 * 100,   // 100 years
+                    min: new Date(1920, 0, 1),
+                    max: new Date(2015, 0, 1),
+                    tooltip: {
+                        followMouse: true
+                    },
+                    stack: true,
+                    selectable: true,
+                    showCurrentTime: false,
+                    moveable: true,
+                    zoomable: false,
+                    align: 'center'
+                };
+
+                // Create timeline
+                const container = document.getElementById('timeline');
+                timeline = new vis.Timeline(container, timelineData, options);
+
+                // Set initial window with padding
+                setWindowWithPadding(allItems);
+
+                // Event selection handler
+                timeline.on('select', function(properties) {
+                    if (properties.items.length > 0) {
+                        showEventDetails(properties.items[0]);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading timeline data:', error);
+                document.getElementById('timeline').innerHTML =
+                    '<p style="color: #e74c3c; padding: 40px; text-align: center;">Error loading timeline data.</p>';
+            });
+
+        function setWindowWithPadding(items) {
+            if (items.length === 0) return;
+
+            const dates = items.map(item => item.start.getTime());
+            const minDate = Math.min(...dates);
+            const maxDate = Math.max(...dates);
+
+            // Add 3 years padding on each side
+            const threeYears = 3 * 365 * 24 * 60 * 60 * 1000;
+            timeline.setWindow(
+                new Date(minDate - threeYears),
+                new Date(maxDate + threeYears),
+                { animation: false }
+            );
+        }
+
+        function filterCategory(category) {
+            if (category === 'all') {
+                timelineData.clear();
+                timelineData.add(allItems);
+                setWindowWithPadding(allItems);
+            } else {
+                const filtered = allItems.filter(item => item.category === category);
+                timelineData.clear();
+                timelineData.add(filtered);
+                setWindowWithPadding(filtered);
+            }
+            document.getElementById('event-details').innerHTML = 'Click an event on the timeline to see details here.';
+        }
+
+        function showEventDetails(itemId) {
+            const item = allItems.find(i => i.id === itemId);
+            if (!item) return;
+
+            const dateStr = item.start.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: item.start.getDate() !== 1 ? 'numeric' : undefined
+            });
+
+            let html = `
+                <div class="event-title">${item.content}</div>
+                <div class="event-date">${dateStr}</div>
+                <div class="event-description">${item.description}</div>
+            `;
+
+            if (item.context) {
+                html += `<div class="event-context">${item.context}</div>`;
+            }
+
+            document.getElementById('event-details').innerHTML = html;
+        }
+
+        function panLeft() {
+            const range = timeline.getWindow();
+            const interval = (range.end - range.start) * 0.3;
+            timeline.setWindow(range.start - interval, range.end - interval);
+        }
+
+        function panRight() {
+            const range = timeline.getWindow();
+            const interval = (range.end - range.start) * 0.3;
+            timeline.setWindow(range.start + interval, range.end + interval);
+        }
+
+        function zoomIn() {
+            const range = timeline.getWindow();
+            const center = (range.start.getTime() + range.end.getTime()) / 2;
+            const newInterval = (range.end - range.start) * 0.5;
+            timeline.setWindow(center - newInterval / 2, center + newInterval / 2);
+        }
+
+        function zoomOut() {
+            const range = timeline.getWindow();
+            const center = (range.start.getTime() + range.end.getTime()) / 2;
+            const newInterval = (range.end - range.start) * 2;
+            timeline.setWindow(center - newInterval / 2, center + newInterval / 2);
+        }
+
+        function fitAll() {
+            const currentItems = timelineData.get();
+            setWindowWithPadding(currentItems);
+        }
+    </script>
+</body>
+</html>

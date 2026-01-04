@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hillerman Themes Concept Graph</title>
+
+  <!-- vis-network CDN -->
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <h1>Leaphorn & Chee Theme Graph</h1>
+    <div class="controls">
+      <label>
+        Search
+        <input id="searchBox" type="text" placeholder="Type a theme (e.g., justice, ceremony)..." />
+      </label>
+
+      <label>
+        Layout
+        <select id="layoutSelect">
+          <option value="physics">Physics</option>
+          <option value="hierarchical">Hierarchical</option>
+        </select>
+      </label>
+
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="panel">
+      <div id="network"></div>
+    </section>
+
+    <aside class="sidebar">
+      <h2>How to use</h2>
+
+      <ul>
+        <li>Click a node to highlight its neighbors.</li>
+        <li>Type in Search to focus a theme.</li>
+        <li>Switch Layout to see structure differently.</li>
+        <li>Hover nodes for short descriptions.</li>
+      </ul>
+
+      <div class="legend">
+        <h2>Legend</h2>
+
+        <ul>
+          <li><span class="dot core"></span> Core theme</li>
+          <li><span class="dot bridge"></span> Bridge theme</li>
+          <li><span class="dot practice"></span> Practice / institution</li>
+          <li><span class="dot place"></span> Place / environment</li>
+          <li><span class="dot character"></span> Character</li>
+          <li><span class="dot book"></span> Book</li>
+        </ul>
+      </div>
+
+      <div class="details">
+        <h2>Selection</h2>
+        <div id="detailsBox" class="detailsBox">Click a node to see details here.</div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
