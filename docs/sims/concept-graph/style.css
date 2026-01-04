@@ -112,6 +112,8 @@ body{
 .dot.bridge{ background:#7aa2ff; }
 .dot.practice{ background:#8bd3c7; }
 .dot.place{ background:#b39ddb; }
+.dot.character{ background:#ff8a65; }
+.dot.book{ background:#a5d6a7; }
 
 .detailsBox{
   background:var(--panel2);

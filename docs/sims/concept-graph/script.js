@@ -4,103 +4,20 @@
    - Layout toggle: physics vs hierarchical
 */
 
-const nodes = new vis.DataSet([
-  // Core themes
-  { id: "culture", label: "Culture", group: "core", title: "Cultural identity, language, kinship, and ways of knowing." },
-  { id: "justice", label: "Justice", group: "core", title: "Justice as process: law, fairness, responsibility, consequences." },
-  { id: "landscape", label: "Landscape", group: "core", title: "Place as character: mesas, canyons, roads, distance, weather." },
-  { id: "belief", label: "Belief Systems", group: "core", title: "Spiritual practice, ceremony, taboos, ethics, balance." },
-
-  // Bridge themes (connect cores)
-  { id: "identity", label: "Identity", group: "bridge", title: "Personal and communal identity shaped by history and place." },
-  { id: "language", label: "Language & Naming", group: "bridge", title: "Meaning carried in words, names, and translation." },
-  { id: "community", label: "Community & Kinship", group: "bridge", title: "Obligations, clan ties, social trust, reputation." },
-  { id: "trad_mod", label: "Tradition vs Modernity", group: "bridge", title: "Tension between contemporary life and older ways." },
-  { id: "outsiders", label: "Outsiders & Contact", group: "bridge", title: "Cross-cultural misunderstanding, bias, cooperation, friction." },
-  { id: "ethics", label: "Ethics & Responsibility", group: "bridge", title: "What one owes to others; moral choices under pressure." },
-  { id: "order_chaos", label: "Order, Disorder, Balance", group: "bridge", title: "Restoring harmony after disruption; pattern vs noise." },
-  { id: "story", label: "Story & Meaning", group: "bridge", title: "How narrative explains events; memory, rumor, and truth." },
-
-  // Practice / institutions
-  { id: "tribal_police", label: "Tribal Police", group: "practice", title: "Policing shaped by local relationships and jurisdiction." },
-  { id: "law_custom", label: "Law vs Custom", group: "practice", title: "Formal law interacting with customary norms and remedies." },
-  { id: "evidence", label: "Investigation & Evidence", group: "practice", title: "Clues, logic, forensics, interviews, and inference." },
-  { id: "institutions", label: "Institutions", group: "practice", title: "Courts, agencies, churches, schools, outside authorities." },
-  { id: "conflict", label: "Conflict & Power", group: "practice", title: "Resource disputes, corruption, coercion, leverage." },
-
-  // Place / environment
-  { id: "sacred", label: "Sacred Sites", group: "place", title: "Places with spiritual meaning; boundaries of respect." },
-  { id: "ecology", label: "Ecology & Resources", group: "place", title: "Land use, extraction, scarcity, stewardship." },
-  { id: "distance", label: "Distance & Isolation", group: "place", title: "Vast spaces affect timing, access, and vulnerability." },
-  { id: "weather", label: "Weather & Time", group: "place", title: "Season, light, and time rhythms shaping events." },
-  { id: "borders", label: "Boundaries & Jurisdiction", group: "place", title: "Where authority begins/ends; maps, roads, lines." },
-
-  // Belief-related specifics
-  { id: "ceremony", label: "Ceremony", group: "bridge", title: "Ritual acts as meaning-making and restoration." },
-  { id: "taboo", label: "Taboo & Transgression", group: "bridge", title: "Violations that create fear, stigma, or spiritual risk." },
-  { id: "hozho", label: "Healing & Balance (Hózhó)", group: "bridge", title: "Restoring harmony; wellness as relational." }
-]);
-
-const edges = new vis.DataSet([
-  // Core-to-core
-  { from: "culture", to: "belief", label: "intertwines" },
-  { from: "culture", to: "justice", label: "frames" },
-  { from: "landscape", to: "culture", label: "grounds" },
-  { from: "landscape", to: "belief", label: "sanctifies" },
-  { from: "justice", to: "belief", label: "tests" },
-
-  // Culture cluster
-  { from: "culture", to: "identity", label: "shapes" },
-  { from: "culture", to: "language", label: "expresses" },
-  { from: "culture", to: "community", label: "sustains" },
-  { from: "culture", to: "trad_mod", label: "negotiates" },
-  { from: "culture", to: "outsiders", label: "meets" },
-  { from: "culture", to: "story", label: "remembers" },
-
-  // Justice cluster
-  { from: "justice", to: "tribal_police", label: "enacted by" },
-  { from: "justice", to: "law_custom", label: "mediates" },
-  { from: "justice", to: "evidence", label: "depends on" },
-  { from: "justice", to: "institutions", label: "confronts" },
-  { from: "justice", to: "ethics", label: "requires" },
-  { from: "justice", to: "conflict", label: "opposes" },
-
-  // Landscape cluster
-  { from: "landscape", to: "distance", label: "imposes" },
-  { from: "landscape", to: "weather", label: "drives" },
-  { from: "landscape", to: "ecology", label: "contains" },
-  { from: "landscape", to: "sacred", label: "holds" },
-  { from: "landscape", to: "borders", label: "defines" },
-
-  // Belief systems cluster
-  { from: "belief", to: "ceremony", label: "includes" },
-  { from: "belief", to: "taboo", label: "marks" },
-  { from: "belief", to: "hozho", label: "aims for" },
-  { from: "belief", to: "ethics", label: "guides" },
-  { from: "belief", to: "story", label: "explains via" },
-
-  // Bridges between clusters
-  { from: "outsiders", to: "institutions", label: "arrive as" },
-  { from: "borders", to: "tribal_police", label: "constrains" },
-  { from: "law_custom", to: "belief", label: "collides with" },
-  { from: "evidence", to: "story", label: "competes with" },
-  { from: "conflict", to: "ecology", label: "over" },
-  { from: "trad_mod", to: "tribal_police", label: "professionalizes" },
-  { from: "community", to: "justice", label: "demands" },
-  { from: "order_chaos", to: "hozho", label: "restores" },
-  { from: "order_chaos", to: "justice", label: "seeks" },
-  { from: "order_chaos", to: "culture", label: "protects" }
-]);
-
 const container = document.getElementById("network");
+const detailsBox = document.getElementById("detailsBox");
+const searchBox = document.getElementById("searchBox");
+const layoutSelect = document.getElementById("layoutSelect");
+
+let nodes, edges, network;
 
 const optionsPhysics = {
   interaction: { hover: true, multiselect: false },
   physics: {
     enabled: true,
     solver: "forceAtlas2Based",
-    forceAtlas2Based: { gravitationalConstant: -65, centralGravity: 0.01, springLength: 140, springConstant: 0.05 },
-    stabilization: { iterations: 150 }
+    forceAtlas2Based: { gravitationalConstant: -80, centralGravity: 0.008, springLength: 180, springConstant: 0.04 },
+    stabilization: { iterations: 200 }
   },
   nodes: {
     shape: "ellipse",
@@ -116,7 +33,9 @@ const optionsPhysics = {
     core: { size: 26 },
     bridge: { size: 18 },
     practice: { size: 18 },
-    place: { size: 18 }
+    place: { size: 18 },
+    character: { size: 24 },
+    book: { size: 20 }
   }
 };
 
@@ -134,20 +53,36 @@ const optionsHier = {
   }
 };
 
-const data = { nodes, edges };
-const network = new vis.Network(container, data, optionsPhysics);
+// Load data and initialize network
+fetch("data.json")
+  .then(response => response.json())
+  .then(data => {
+    nodes = new vis.DataSet(data.nodes);
+    edges = new vis.DataSet(data.edges);
 
-network.once("stabilized", () => {
-  network.fit();
-});
+    network = new vis.Network(container, { nodes, edges }, optionsPhysics);
 
-// Color per group (kept minimal, no manual palette explosion)
+    network.once("stabilized", () => {
+      network.fit();
+    });
+
+    applyGroupColors();
+    setupEventListeners();
+  })
+  .catch(error => {
+    console.error("Error loading data:", error);
+    container.innerHTML = "<p style='color:#ff6b6b;padding:20px;'>Error loading graph data.</p>";
+  });
+
+// Color per group
 function applyGroupColors() {
   const groupStyles = {
-    core:   { color: { background: "#ffd166", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
-    bridge: { color: { background: "#7aa2ff", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
-    practice:{ color:{ background: "#8bd3c7", border:"rgba(255,255,255,0.35)" }, font:{ color:"#0b0f14" } },
-    place:  { color: { background: "#b39ddb", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } }
+    core:     { color: { background: "#ffd166", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
+    bridge:   { color: { background: "#7aa2ff", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
+    practice: { color: { background: "#8bd3c7", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
+    place:    { color: { background: "#b39ddb", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
+    character:{ color: { background: "#ff8a65", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } },
+    book:     { color: { background: "#a5d6a7", border: "rgba(255,255,255,0.35)" }, font: { color: "#0b0f14" } }
   };
 
   nodes.forEach(n => {
@@ -155,11 +90,8 @@ function applyGroupColors() {
     if (style) nodes.update({ id: n.id, ...style });
   });
 }
-applyGroupColors();
 
 // Selection details + neighbor highlighting
-const detailsBox = document.getElementById("detailsBox");
-
 function showDetails(nodeId) {
   const n = nodes.get(nodeId);
   if (!n) return;
@@ -187,6 +119,7 @@ function escapeHtml(str) {
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
 }
+
 function stripHtml(str) {
   return String(str).replace(/<[^>]*>/g, "");
 }
@@ -214,20 +147,7 @@ function resetOpacity() {
   edges.forEach(e => edges.update({ id: e.id, opacity: 0.9 }));
 }
 
-network.on("click", (params) => {
-  if (params.nodes.length === 0) {
-    resetOpacity();
-    detailsBox.textContent = "Click a node to see details here.";
-    return;
-  }
-  const nodeId = params.nodes[0];
-  showDetails(nodeId);
-  dimAllExcept(nodeId);
-});
-
 // Search focus
-const searchBox = document.getElementById("searchBox");
-
 function focusByQuery(q) {
   const query = q.trim().toLowerCase();
   if (!query) return;
@@ -242,25 +162,35 @@ function focusByQuery(q) {
   dimAllExcept(match.id);
 }
 
-searchBox.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") focusByQuery(searchBox.value);
-});
+// Setup all event listeners
+function setupEventListeners() {
+  network.on("click", (params) => {
+    if (params.nodes.length === 0) {
+      resetOpacity();
+      detailsBox.textContent = "Click a node to see details here.";
+      return;
+    }
+    const nodeId = params.nodes[0];
+    showDetails(nodeId);
+    dimAllExcept(nodeId);
+  });
 
-// Layout toggle
-const layoutSelect = document.getElementById("layoutSelect");
-layoutSelect.addEventListener("change", () => {
-  const mode = layoutSelect.value;
-  network.setOptions(mode === "hierarchical" ? optionsHier : optionsPhysics);
-  // small nudge so users see a change immediately
-  resetOpacity();
-  network.fit({ animation: { duration: 450 } });
-});
+  searchBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") focusByQuery(searchBox.value);
+  });
 
-// Reset
-document.getElementById("resetBtn").addEventListener("click", () => {
-  searchBox.value = "";
-  resetOpacity();
-  network.unselectAll();
-  detailsBox.textContent = "Click a node to see details here.";
-  network.fit({ animation: { duration: 450 } });
-});
+  layoutSelect.addEventListener("change", () => {
+    const mode = layoutSelect.value;
+    network.setOptions(mode === "hierarchical" ? optionsHier : optionsPhysics);
+    resetOpacity();
+    network.fit({ animation: { duration: 450 } });
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    searchBox.value = "";
+    resetOpacity();
+    network.unselectAll();
+    detailsBox.textContent = "Click a node to see details here.";
+    network.fit({ animation: { duration: 450 } });
+  });
+}
