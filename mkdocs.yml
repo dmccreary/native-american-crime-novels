@@ -1,4 +1,20 @@
-site_name: My Docs
+site_name: Native American Crime Novels
+site_description: A study of Tony Hillerman's Leaphorn & Chee mystery series exploring Navajo culture, landscape, and justice
+site_author: Dan McCreary
+repo_url: https://github.com/dmccreary/native-american-crime-novels
+repo_name: native-american-crime-novels
+site_url: https://dmccreary.github.io/native-american-crime-novels/
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
 
 nav:
   - Home: index.md
