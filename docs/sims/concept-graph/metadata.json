@@ -1,0 +1,49 @@
+{
+  "title": "Native American Crime Concept Graph",
+  "description": "[View Concept Graph](./main.html){ .md-button }",
+  "subject": "Mathematics",
+  "topic": "Native American Crime Concept Graph",
+  "gradeLevel": "6-12",
+  "bloomsTaxonomy": [
+    "Understand",
+    "Apply"
+  ],
+  "author": "Dan McCreary",
+  "dateCreated": "2026-01-23",
+  "dateModified": "2026-01-23",
+  "version": "1.0.0",
+  "license": "MIT",
+  "language": "en",
+  "format": "text/html",
+  "type": "Interactive Simulation",
+  "framework": "vis-network",
+  "url": "https://dmccreary.github.io/native-american-crime-novels/sims/concept-graph/",
+  "identifier": "https://dmccreary.github.io/native-american-crime-novels/sims/concept-graph/",
+  "_source": {
+    "repo": "native-american-crime-novels",
+    "sim": "concept-graph",
+    "github_url": "https://github.com/dmccreary/native-american-crime-novels/tree/main/docs/sims/concept-graph",
+    "auto_generated": true,
+    "generation_date": "2026-01-23"
+  },
+  "subjects": [
+    "Mathematics",
+    "Physics",
+    "Computer Science",
+    "Chemistry",
+    "Engineering"
+  ],
+  "visualizationType": [
+    "animation",
+    "simulation",
+    "chart",
+    "graph",
+    "network",
+    "map"
+  ],
+  "learningObjectives": [
+    "Understand the mathematical concept of native american crime concept graph",
+    "Apply native american crime concept graph to solve problems",
+    "Visualize and interpret native american crime concept graph relationships"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Tony Hillerman Book Sales",
+  "description": "An interactive horizontal bar chart showing estimated total sales for each of Tony Hillerman's Leaphorn & Chee novels.",
+  "subject": "Mathematics",
+  "topic": "Tony Hillerman Book Sales",
+  "gradeLevel": "6-12",
+  "bloomsTaxonomy": [
+    "Understand",
+    "Apply"
+  ],
+  "author": "Dan McCreary",
+  "dateCreated": "2026-01-23",
+  "dateModified": "2026-01-23",
+  "version": "1.0.0",
+  "license": "MIT",
+  "language": "en",
+  "format": "text/html",
+  "type": "Interactive Simulation",
+  "framework": "chart.js",
+  "url": "https://dmccreary.github.io/native-american-crime-novels/sims/book-sales/",
+  "identifier": "https://dmccreary.github.io/native-american-crime-novels/sims/book-sales/",
+  "_source": {
+    "repo": "native-american-crime-novels",
+    "sim": "book-sales",
+    "github_url": "https://github.com/dmccreary/native-american-crime-novels/tree/main/docs/sims/book-sales",
+    "auto_generated": true,
+    "generation_date": "2026-01-23"
+  },
+  "subjects": [
+    "Mathematics",
+    "Chemistry"
+  ],
+  "visualizationType": [
+    "animation",
+    "chart",
+    "interactive-demo",
+    "map"
+  ],
+  "learningObjectives": [
+    "Understand the mathematical concept of tony hillerman book sales",
+    "Apply tony hillerman book sales to solve problems",
+    "Visualize and interpret tony hillerman book sales relationships",
+    "Experiment with parameters to observe their effects on tony hillerman book sales"
+  ]
+}
