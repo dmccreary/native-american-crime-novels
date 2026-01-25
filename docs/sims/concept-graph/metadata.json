@@ -45,5 +45,24 @@
     "Understand the mathematical concept of native american crime concept graph",
     "Apply native american crime concept graph to solve problems",
     "Visualize and interpret native american crime concept graph relationships"
-  ]
+  ],
+  "pedagogical": {
+    "pattern": "practice",
+    "bloomAlignment": [
+      "understand",
+      "apply"
+    ],
+    "bloomVerbs": [
+      "classify",
+      "compare",
+      "use"
+    ],
+    "pacing": "self-paced",
+    "supportsPrediction": false,
+    "dataVisibility": "medium",
+    "feedbackType": [
+      "corrective"
+    ],
+    "interactionStyle": "respond"
+  }
 }

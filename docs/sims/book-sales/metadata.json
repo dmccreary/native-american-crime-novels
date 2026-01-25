@@ -41,5 +41,24 @@
     "Apply tony hillerman book sales to solve problems",
     "Visualize and interpret tony hillerman book sales relationships",
     "Experiment with parameters to observe their effects on tony hillerman book sales"
-  ]
+  ],
+  "pedagogical": {
+    "pattern": "reference",
+    "bloomAlignment": [
+      "understand",
+      "apply"
+    ],
+    "bloomVerbs": [
+      "summarize",
+      "illustrate"
+    ],
+    "pacing": "continuous",
+    "supportsPrediction": true,
+    "dataVisibility": "medium",
+    "feedbackType": [
+      "immediate",
+      "corrective"
+    ],
+    "interactionStyle": "observe"
+  }
 }

@@ -45,5 +45,28 @@
     "Apply tony hillerman timeline to solve problems",
     "Visualize and interpret tony hillerman timeline relationships",
     "Test understanding of tony hillerman timeline through interactive exercises"
-  ]
+  ],
+  "pedagogical": {
+    "pattern": "assessment",
+    "bloomAlignment": [
+      "understand",
+      "apply",
+      "analyze"
+    ],
+    "bloomVerbs": [
+      "classify",
+      "summarize",
+      "illustrate",
+      "implement",
+      "use"
+    ],
+    "pacing": "self-paced",
+    "supportsPrediction": false,
+    "dataVisibility": "medium",
+    "feedbackType": [
+      "immediate",
+      "corrective"
+    ],
+    "interactionStyle": "manipulate"
+  }
 }
